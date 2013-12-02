@@ -1,20 +1,66 @@
 "use strict";
 
 window.onload = function(){
+    
+    var i = 0;
+    var newString = " ";
+    
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+		
+	try
+	{
+	    if (str.length === 0)
+	    {
+	        throw new NoStringFoundException();
+	    }
+    	for(i = 0; i < str.length; i+=1)
+        {
+    	
+        var character;
+            
+            character = str.charAt(i);
+            
+            if(character == "A" || character == "a")
+            {
+                newString += "#";
+            }
+            
+            else
+            {
+            
+                if(character == character.toUpperCase())        // Om det är stor bokstav
+                {
+                    newString += character.toLowerCase();
+                }
+                
+                if(character == character.toLowerCase())        // Om det är liten bokstav
+                {
+                    newString += character.toUpperCase();
+                }
+            }
+        }
+    
+          return newString;
+	}
 	
-
-
-
-
-
-
-	};
+	catch(err)
+	{
+	    return "Ingen text togs emot, ladda om sidan och försök igen.";
+	}
+	
+	function NoStringFoundException() {
+	    return "Ingen text kunde hittas, ladda om sidan och försök igen.";
+	}
+	
+    };
+	
+	
+	
 	// ------------------------------------------------------------------------------
 
 
