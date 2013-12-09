@@ -1,7 +1,9 @@
 var myApp = {
     
     init: function () {
-        console.log("Funkar");
+        var now = new Date();
+        var myMessage = new Message("Nej, men hallå där. Köp blåbär!", now);
+        window.alert(myMessage.toString());
     }
 
 };
