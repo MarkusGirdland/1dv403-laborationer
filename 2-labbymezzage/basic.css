@@ -19,6 +19,10 @@ p {
     color: white;
 }
 
+#writeMessages a {
+    margin-left: 10px;
+    color: #0099CC;
+}
 
 #writeMessages img {
     margin-left: 20px;

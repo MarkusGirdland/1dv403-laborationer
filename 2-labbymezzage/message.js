@@ -34,8 +34,16 @@ function renderMessage(Message){
     
     var img = document.createElement("img");
     img.src = "img/deletePic.png";
-    img.onclick = function () {alert("OMG WTF")};
     
+    var link = document.createElement("a");                     // Från guide http://www.peterbe.com/plog/createelement-a
+    link.setAttribute("TheLink", "signature");
+    link.setAttribute('href', 'javascript:deleteIt()');
+    
+    var linkText = document.createTextNode("Ta bort");          // Skaffa text till länken
+    
+    link.appendChild(linkText);
+    
+    writeMessages.appendChild(link);                            // skriv ut text, länk och gör ny rad
     writeMessages.appendChild(img);
     
     div.innerHTML += "<br />";
@@ -52,4 +60,8 @@ function renderMessages(messages) {
     {
         renderMessage(messages[timesWritten-1]);
     }
+}
+
+function deleteIt(){
+    console.log("toast");
 }
