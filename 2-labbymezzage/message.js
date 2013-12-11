@@ -26,5 +26,30 @@ Message.prototype.getHTMLText = function () {
 function renderMessage(Message){
     var text = document.createTextNode(Message.getText());
     
+    var div = document.getElementById("writeMessages");
+    
     writeMessages.appendChild(text);
+    
+    // Bilden
+    
+    var img = document.createElement("img");
+    img.src = "img/deletePic.png";
+    img.onclick = function () {alert("OMG WTF")};
+    
+    writeMessages.appendChild(img);
+    
+    div.innerHTML += "<br />";
+}
+
+var timesWritten = 0;
+
+function renderMessages(messages) {
+    
+    timesWritten += 1;
+    
+    
+    if(timesWritten === (messages.length))
+    {
+        renderMessage(messages[timesWritten-1]);
+    }
 }

@@ -17,7 +17,7 @@ var myApp = {
 		
 		messages.push(new Message(input.value, now));
 		
-		renderMessage(messages[0]);
+		renderMessages(messages);
 		
 
         });

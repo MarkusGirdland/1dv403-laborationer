@@ -18,3 +18,10 @@ p {
 {
     color: white;
 }
+
+
+#writeMessages img {
+    margin-left: 20px;
+    width: 15px;
+    height: 15px;
+}
