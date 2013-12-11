@@ -8,6 +8,7 @@ var myApp = {
         var now = new Date();
         var messages = [];
         
+        
         console.log("inne");
         
         var input = document.querySelector("#messageReceived");
@@ -18,7 +19,6 @@ var myApp = {
 		messages.push(new Message(input.value, now));
 		
 		renderMessages(messages);
-		
 
         });
         
