@@ -3,9 +3,31 @@
 <head>
 	<meta charset="UTF-8" />
  	<title>JavaScript - Laboration 2 - Labbymezzage</title>
+ 	<link rel="Stylesheet" href="basic.css" />
 
 </head>
     <body>
+        <header>
+            <h1>
+                Välkommen till mitt Javascript!
+            </h1>
+        </header>
+        
+        <main>
+            <p>Skriv ditt meddelande:</p>
+            
+            <form>
+                <input type="text" id="messageReceived" />
+                <input id="send" type="submit" value="Skicka Meddelande" />
+                <p id="value"></p>
+            </form>
+            
+            
+            <div id="writeMessages">
+                
+            </div>
+            
+        </main>
         <script src="message.js"></script>
         <script src="application_run.js"></script>
     </body>

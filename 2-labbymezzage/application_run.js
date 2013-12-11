@@ -10,20 +10,27 @@ var myApp = {
         
         console.log("inne");
         
-        messages[0] = new Message("Hej", now);
-        messages[1] = new Message("Tja", now);
+        var input = document.querySelector("#messageReceived");
+        var submit = document.querySelector("#send");
+        submit.addEventListener("click", function(e) {
+		e.preventDefault();
+		
+		messages.push(new Message(input.value, now));
+		
+		renderMessage(messages[0]);
+		
+
+        });
         
-        messages.push(new Message("Görs?", now));
         
-        window.alert(messages[0].toString());
-        window.alert(messages[1].toString());
-        window.alert(messages[2].toString());
-            
+        
         
     }
     
 };
 
 window.onload = myApp.init;
+
+
 
 

@@ -9,7 +9,7 @@ function Message(text, date) {
     this.setDate = function (_date) { _date = date || 0; };
     
     
-    
+    console.log(this.toString());
     
     this.setText(text);
     this.setDate(date);
@@ -22,3 +22,9 @@ Message.prototype.toString = function () {
 Message.prototype.getHTMLText = function () {
     return "INSERT HTML TEXT HERE";
 };
+
+function renderMessage(Message){
+    var text = document.createTextNode(Message.getText());
+    
+    writeMessages.appendChild(text);
+}
