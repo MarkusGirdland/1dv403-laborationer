@@ -44,6 +44,8 @@ function renderMessage(Message, messages){
     link.setAttribute("id", "TheLink");
     link.setAttribute("onclick", "deleteIt(messages);");
     
+    link.onClick
+    
     
     
     
