@@ -6,16 +6,28 @@ window.onload = function(){
 	
 	var birthday = function(date){
 	
-	var character = " ";
-	var year = " ";
-	var month = " ";
-	var day = " ";
+	
+	
+	
+	var character = "";
+	var year = "";
+	var month = "";
+	var day = "";
 		
 	try
 	{
+        if((date.trim(date)).length===0)                // Hittad http://stackoverflow.com/questions/10528193/how-can-i-determine-if-a-string-only-contains-spaces-using-javascript
+        {
+            throw new WrongDateException();
+        }
+	
+        else
+        {
         for(i = 0; i < date.length; i+=1)       // For loop för hela datumets längd
         {
             character = date.charAt(i);
+            
+            
             
             if((i != 4 || i != 7) && (i >= 0 && i <= 9))        // Så länge i är mellan 0 och 9 men inte 4 eller 7
             {
@@ -52,36 +64,72 @@ window.onload = function(){
             }
         } 
     
+        console.log(year);
+        console.log(month);
+        console.log(day);
         
         var birthdayDate = new Date(year, month-1, day);
         var now = new Date();
         
         var days = 0;
         
-        console.log(birthdayDate);
-        console.log(now);
-        
         days = ( (birthdayDate.getTime() - now.getTime())  / (1000*60*60*24));
+        
         
         if(days < 0)            // Om man redan fyllt år
         {
-            
+   
             var yearDiff = birthdayDate.getYear() - now.getYear();
             
-            yearDiff *= -1;         // Gör om till positivt nummer      
+            
+            yearDiff *= -1;         // Gör om till positivt nummer 
+            
+            var extraDays = yearDiff / 4;
+            
+            extraDays = Math.round(extraDays);
+            
+            
+            
+            
             yearDiff++;
-            days = days + (yearDiff  * 365);
+            
+            
+            days = days + (yearDiff  * 365) + extraDays;
+            
+            var monthDiff = birthdayDate.getMonth() - now.getMonth();
+            var daysDiff = birthdayDate.getDay() - now.getDay();
+            
+            
+            if(monthDiff >= 0 && daysDiff <= 0)
+            {
+                days-=365;
+            }
+            
+            
+            console.log(days);
         }
         
-        days = Math.round(days);
+        days = Math.round(days+1);
+        
+        if(days === 365)
+        {
+            days = 0;
+        }
+        
+        if(days === 366)
+        {
+            days = 1;
+        }
+        
         return days;
 
       
 	}
+	}
 	
 	catch(err)
 	{
-        return "Fel format på datum. Försök igen.";    
+        return "ett ogiltigt antal";    
 	}
 
     function WrongDateException()
@@ -103,7 +151,7 @@ window.onload = function(){
     {
         day += character;
     }
-
+	
 	};
 	// ------------------------------------------------------------------------------
 

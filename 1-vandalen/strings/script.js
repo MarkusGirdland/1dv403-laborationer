@@ -3,7 +3,7 @@
 window.onload = function(){
     
     var i = 0;
-    var newString = " ";
+    var newString = "";
     
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"

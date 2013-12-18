@@ -21,7 +21,7 @@ window.onload = function(){
                 return [false, "Det hemliga talet är lägre!"];
             }
             
-            else if(number == secret)
+            else if(number === secret)
             {
                 return [true, "Grattis du vann! Det hemliga talet var " + secret + " och du behövde " + numberOfGuesses + " gissningar för att hitta det."];
             }
