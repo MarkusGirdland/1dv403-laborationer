@@ -34,27 +34,26 @@ function renderMessage(Message, messages){
     
     // Bilden
     
+
+    
+    var btn = document.createElement("BUTTON");                   
+    
+    btn.setAttribute("type", "button");
+    btn.setAttribute("value", "Execute");
+    btn.setAttribute("id", "TheLink");
+    
+    btn.onClick="deleteIt(messages)";
+    
+    
     var img = document.createElement("img");
     img.src = "img/deletePic.png";
     
-    var link = document.createElement("a");                   
     
-    link.setAttribute("type", "button");
-    link.setAttribute("value", "Execute");
-    link.setAttribute("id", "TheLink");
-    link.setAttribute("onclick", "deleteIt(messages);");
-    
-    link.onClick
+    btn.appendChild(img);
+    btn.onClick= deleteIt(messages);
     
     
-    
-    
-    var linkText = document.createTextNode("Ta bort");          // Skaffa text till länken
-    
-    link.appendChild(linkText);
-    
-    writeMessages.appendChild(link);                            // skriv ut text, länk och gör ny rad
-    writeMessages.appendChild(img);
+    writeMessages.appendChild(btn);                            // skriv ut text, länk och gör ny rad
     
     div.innerHTML += "<br />";
 }
