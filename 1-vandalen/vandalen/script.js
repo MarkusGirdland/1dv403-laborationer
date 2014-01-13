@@ -26,26 +26,27 @@ var makePerson = function(persArr){
             }
         }
         
-        result.averageAge = (ageSum / 3);
+        result.averageAge = (ageSum / persArr.length);
         result.averageAge = Math.round(result.averageAge);
         
         // Namn
-        
-        for(var i = 0; i < 2; i+=1)
+
+        var tempArray = new Array();
+
+        for(var i = 0; i < persArr.length; i+=1)
         {
-            var calculator = data[i].name.localeCompare(data[i+1].name, 'sv');      // OBS OBS Trots ett error så skulle jag hävda att den här tar hänsyn till svenska?
-                                                                                    // Någonting som jag har missförstått?
-                                                                                    
-                                                                                    // Detta exempel används även på http://www.w3schools.com/jsref/jsref_localecompare.asp
-            
-            if(calculator === 1)
-            {
-                var tempString = data[i+1].name;
-                data[i+1].name = data[i].name;
-                data[i].name = tempString;
-            }
+            tempArray[i] = data[i].name;
         }
+
+        tempArray.sort(function(a, b) { return a.localeCompare(b, 'SV') });
         
+        for(var b = 0; b < persArr.length; b+=1)
+        {
+            data[b].name = tempArray[b];
+        } 
+        
+        
+     
         var tempNames ="";
         
         for(var x = 0; x < persArr.length; x+=1)

@@ -6,9 +6,6 @@ window.onload = function(){
 	
 	var birthday = function(date){
 	
-	
-	
-	
 	var character = "";
 	var year = "";
 	var month = "";
@@ -16,7 +13,7 @@ window.onload = function(){
 		
 	try
 	{
-        if((date.trim(date)).length===0)                // Hittad http://stackoverflow.com/questions/10528193/how-can-i-determine-if-a-string-only-contains-spaces-using-javascript
+        if((date.trim(date)).length===0 || date.length > 10)                // Hittad http://stackoverflow.com/questions/10528193/how-can-i-determine-if-a-string-only-contains-spaces-using-javascript
         {
             throw new WrongDateException();
         }
@@ -63,67 +60,22 @@ window.onload = function(){
                 }
             }
         } 
-    
-        console.log(year);
-        console.log(month);
-        console.log(day);
         
-        var birthdayDate = new Date(year, month-1, day);
+        var birthdayDate = new Date(year, month-1, day, 12);
         var now = new Date();
         
-        var days = 0;
+        var year = now.getFullYear();
+        birthdayDate.setFullYear(year);     
+        now.setHours(0,0,0,0);      // Bättre uträkning
         
-        days = ( (birthdayDate.getTime() - now.getTime())  / (1000*60*60*24));
-        
-        
-        if(days < 0)            // Om man redan fyllt år
+        if(now > birthdayDate)      // Om man fyllt år
         {
-   
-            var yearDiff = birthdayDate.getYear() - now.getYear();
-            
-            
-            yearDiff *= -1;         // Gör om till positivt nummer 
-            
-            var extraDays = yearDiff / 4;
-            
-            extraDays = Math.round(extraDays);
-            
-            
-            
-            
-            yearDiff++;
-            
-            
-            days = days + (yearDiff  * 365) + extraDays;
-            
-            var monthDiff = birthdayDate.getMonth() - now.getMonth();
-            var daysDiff = birthdayDate.getDay() - now.getDay();
-            
-            
-            if(monthDiff >= 0 && daysDiff <= 0)
-            {
-                days-=365;
-            }
-            
-            
-            console.log(days);
+            birthdayDate.setFullYear(year+1);
         }
         
-        days = Math.round(days+1);
-        
-        if(days === 365)
-        {
-            days = 0;
-        }
-        
-        if(days === 366)
-        {
-            days = 1;
-        }
-        
-        return days;
-
-      
+        var days = Math.round((birthdayDate-now)/8.64e7);   // Hittat tips om att det är bättre än 1000*60*60*24
+    
+        return days-1;
 	}
 	}
 	
@@ -131,6 +83,11 @@ window.onload = function(){
 	{
         return "ett ogiltigt antal";    
 	}
+
+    function FutureDateException()
+    {
+        return "ett ogiltigt antal (då det ligger i framtiden)";
+    }
 
     function WrongDateException()
     {
