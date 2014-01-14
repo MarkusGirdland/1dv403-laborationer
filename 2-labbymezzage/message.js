@@ -23,40 +23,7 @@ Message.prototype.getHTMLText = function () {
     return "INSERT HTML TEXT HERE";
 };
 
-function renderMessage(Message, messages){
-    var text = document.createTextNode(Message.getText());
-    var time = document.createTextNode(Message.getDate());
-    var div = document.getElementById("writeMessages");
-    
-    writeMessages.appendChild(text);
-    div.innerHTML += " ";
-    writeMessages.appendChild(time);
-    
-    // Bilden
-    
 
-    
-    var btn = document.createElement("BUTTON");                   
-    
-    btn.setAttribute("type", "button");
-    btn.setAttribute("value", "Execute");
-    btn.setAttribute("id", "TheLink");
-    
-    btn.onClick="deleteIt(messages)";
-    
-    
-    var img = document.createElement("img");
-    img.src = "img/deletePic.png";
-    
-    
-    btn.appendChild(img);
-    btn.onClick= deleteIt(messages);
-    
-    
-    writeMessages.appendChild(btn);                            // skriv ut text, länk och gör ny rad
-    
-    div.innerHTML += "<br />";
-}
 
 var timesWritten = 0;
 
