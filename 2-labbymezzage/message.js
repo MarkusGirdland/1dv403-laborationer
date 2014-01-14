@@ -22,27 +22,3 @@ Message.prototype.toString = function () {
 Message.prototype.getHTMLText = function () {
     return "INSERT HTML TEXT HERE";
 };
-
-
-
-var timesWritten = 0;
-
-function renderMessages(messages) {
-    
-        timesWritten += 1;
-    
-    
-    if(timesWritten === (messages.length))
-    {
-        renderMessage(messages[timesWritten-1], messages);
-    }
-}
-
-    function deleteIt(messages)
-    {
-        console.log("hej Igen");
-      timesWritten -= 1;
-      messages.pop();
-      renderMessages(messages);
-    }
-
