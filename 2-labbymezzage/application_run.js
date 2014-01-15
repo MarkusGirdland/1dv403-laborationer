@@ -58,28 +58,37 @@ function renderMessage(index, theMessages){
     var ul = document.getElementById("writeMessages");
     ul.style.listStyleType="none";
     
+    
+    var a = document.createElement('a');
+    a.href = "#";
+    
     var button=document.createElement('a');
+    button.href="#";
     
     li.id = index;                                                  // Spara id
     li.appendChild(text);                                           // Lägg in text & tid 
     li.appendChild(button);
     
+    var image = document.createElement('img');                      // Lägg in bilder
+    image.src = 'img/deletePic.png';
+    
     var timeImage = document.createElement('img');
     timeImage.src = 'img/clock.png';
     
+    
+    
     button.appendChild(timeImage);
+    a.appendChild(image);
 
-    var image = document.createElement('img');                      // Lägg in bild
-    image.src = 'img/deletePic.png';
-
-    timeImage.onclick = function(){
+    
+    button.onclick = function(){
         alert(theMessage.getDate());                                // Alert med tid
     };
-
-    li.appendChild(image);                                          
+    
+    li.appendChild(a);
     ul.appendChild(li);
 
-    image.onclick = function(e){
+    a.onclick = function(e){
         var message_id = this.parentNode.id;                        // Ta bort rätt arrayelement
         
         var sure = confirm("Är du säker på att du vill ta bort meddelandet?");
