@@ -22,59 +22,43 @@ var myApp = {
             
             renderMessages(messages, false);
         };
-        
-        
-        /*var input = document.querySelector("#messageReceived");
-        var submit = document.querySelector("#send");
-        
-        console.log(input);
-        console.log(submit);
-        
-        submit.addEventListener("click", function(e) {
-		e.preventDefault();
-		
-		messages.push(new Message(input.value, now));
-		
-		renderMessages(messages);
-
-        });
-        
-        */
-        
-      
     }
     
 };
 
-var called = 0;
-var id = 0;
-
-function renderMessage(theMessage, theMessages){
+function renderMessage(index, theMessages){
+    var theMessage = theMessages[index];                            // Få rätt meddelande
     var text = document.createTextNode(theMessage.getText());
-    var time = document.createTextNode(theMessage.getDate());
-    var div = document.getElementById("writeMessages");
+    var li = document.createElement('li');
+    var ul = document.getElementById("writeMessages");
+    ul.style.listStyleType="none";
     
-    div.appendChild(text);
-    div.appendChild(time);
+    var button=document.createElement('a');
     
-    // Id
+    li.id = index;                                                  // Spara id
+    li.appendChild(text);                                           // Lägg in text & tid 
+    li.appendChild(button);
     
-    id = called;
-    called+=1;
+    var timeImage = document.createElement('img');
+    timeImage.src = 'img/clock.png';
     
-    // Bilden
-    
-    var image = document.createElement('img');
+    button.appendChild(timeImage);
+
+    var image = document.createElement('img');                      // Lägg in bild
     image.src = 'img/deletePic.png';
-    
-    div.appendChild(image);
-    div.appendChild(document.createElement('br'));
-    
+
+    timeImage.onclick = function(){
+        alert(theMessage.getDate());                                // Alert med tid
+    };
+
+    li.appendChild(image);                                          
+    ul.appendChild(li);
+
     image.onclick = function(e){
+        var message_id = this.parentNode.id;                        // Ta bort rätt arrayelement
         
-        
-        theMessages.splice(div.id, 1);
-        removeAll(theMessages);
+        theMessages.splice(message_id, 1); 
+        removeAll(theMessages); 
     };
 }
 
@@ -86,21 +70,20 @@ function renderMessages(theMessages, fromBeginning){
     {
         for(var i = 0; i < timesWritten; i+=1)
         {
-            renderMessage(theMessages[i], theMessages);
+            renderMessage(i, theMessages);                      // Skriv ut utan att plussa
         }
     }
     
     else
     {
-        renderMessage(theMessages[timesWritten], theMessages);
-        timesWritten+=1;
+        renderMessage(timesWritten, theMessages);
+        timesWritten+=1;                                        // Plussa endast om det är ett nytt meddelande
     }
-    
-    console.log(timesWritten);
 }
 
 function removeAll(theMessages){
-    document.getElementById("writeMessages").innerHTML = '';
+    document.getElementById("writeMessages").innerHTML = '';    // Radera all html
+    timesWritten-=1;                                            // Ta bort 1
     renderMessages(theMessages, true);
 }
 
