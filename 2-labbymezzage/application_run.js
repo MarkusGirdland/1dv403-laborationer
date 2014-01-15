@@ -9,7 +9,26 @@ var myApp = {
         
         var messages = [];
         
-        var myBtn = document.getElementById("send");
+        //var myBtn = document.getElementById("send");
+        var myBtn = document.createElement("BUTTON");
+        var BtnTxt = document.createTextNode("Skicka Meddelande");
+        
+        myBtn.appendChild(BtnTxt);
+        
+        var enter = document.querySelector("#messageReceived");
+        
+        enter.addEventListener("keydown", keyDown, false);
+        
+        
+        function keyDown(e){
+            if(e.shiftKey && e.keyCode == 13) { 
+                var newline = document.querySelector("#messageReceived");
+                console.log("hmm");
+                newline.appendChild(document.createElement('\n'));
+            }
+        }
+        
+        
         
         myBtn.onclick = function(e){
             e.preventDefault();
