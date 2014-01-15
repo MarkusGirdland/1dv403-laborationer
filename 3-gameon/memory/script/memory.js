@@ -23,16 +23,14 @@ function generateBoard(cols, rows, numberArray)
     var div = document.getElementById("tbody");
     var tr = document.createElement('tr');
     var td = document.createElement('td');
-    var text = document.createTextNode("hej");
     
     var counter = 0;
     
     var imageArray = [];
     
-    for(var x = 0; x < numberArray.length; x+=1)        // testa arrayen
+    for(var x = 0; x < numberArray.length; x+=1)        // Skapa bilder
     {
-        console.log(numberArray[x]);
-        imageArray[x] = createImg(x);
+        imageArray[x] = createImg(x);                   // Lägg a-taggade bilder i ny array
     }
     
     function createImg(nr){                             // Skapa images
@@ -42,22 +40,19 @@ function generateBoard(cols, rows, numberArray)
         
         //TODO: Onclick
         
-        var number = numberArray[nr];
-        var convertString = number.toString();
-        var toString = "pics/" + convertString + ".png";
+        var number = numberArray[nr];                       // Sätt in nummer av array
+        var convertString = number.toString();              // Gör till string
+        var toString = "pics/" + convertString + ".png";    // Formattera rätt
         
         img.src = toString;          // Generera bild
         
-        console.log(toString);
-        
-        a.appendChild(img);
+        a.appendChild(img);                                 // Gör a-tagg till bild
         
         return a;
     }
     
     
-    
-    for(var i = 0; i < cols; i+=1)
+    for(var i = 0; i < cols; i+=1)                      // Skriv ut bilder
     {
         tr = document.createElement('tr');
         div.appendChild(tr);
@@ -67,6 +62,7 @@ function generateBoard(cols, rows, numberArray)
             td = document.createElement('td');
             var theImage = imageArray[counter];
             counter+=1;
+            
             
             td.appendChild(theImage);
             div.appendChild(td);
