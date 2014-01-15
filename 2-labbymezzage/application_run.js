@@ -26,9 +26,9 @@ var myApp = {
             else if(e.keyCode == 13) { 
                 e.preventDefault();
                 var now = new Date();
-                var input = document.querySelector("#messageReceived");
+                var theInput = document.querySelector("#messageReceived");
                 
-                messages.push(new Message(input.value, now));
+                messages.push(new Message(theInput.value, now));
                 
                 renderMessages(messages, false);
             }
