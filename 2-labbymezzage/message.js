@@ -8,9 +8,6 @@ function Message(text, date) {
     this.getDate = function () { return date; };
     this.setDate = function (_date) { _date = date || 0; };
     
-    
-    console.log(this.toString());
-    
     this.setText(text);
     this.setDate(date);
 }
@@ -20,5 +17,9 @@ Message.prototype.toString = function () {
 };
 
 Message.prototype.getHTMLText = function () {
-    return "INSERT HTML TEXT HERE";
+    var theText = this.getText();
+    
+    theText = theText.replace("<br>", ". ");  
+    theText = theText.replace("\n", ". ");
+    return theText;
 };

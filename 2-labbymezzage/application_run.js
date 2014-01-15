@@ -9,26 +9,33 @@ var myApp = {
         
         var messages = [];
         
-        //var myBtn = document.getElementById("send");
-        var myBtn = document.createElement("BUTTON");
-        var BtnTxt = document.createTextNode("Skicka Meddelande");
-        
-        myBtn.appendChild(BtnTxt);
-        
+        var myBtn = document.getElementById("send");
         var enter = document.querySelector("#messageReceived");
         
         enter.addEventListener("keydown", keyDown, false);
         
         
         function keyDown(e){
-            if(e.shiftKey && e.keyCode == 13) { 
-                var newline = document.querySelector("#messageReceived");
-                console.log("hmm");
-                newline.appendChild(document.createElement('\n'));
+            if(e.keyCode == 13 && e.shiftKey)
+            {
+                e.preventDefault();
+                var input = document.querySelector("#messageReceived");
+                
+                input.value = input.value + "\n";
+            }
+            
+            else if(e.keyCode == 13) { 
+                e.preventDefault();
+                var now = new Date();
+                var input = document.querySelector("#messageReceived");
+                
+                messages.push(new Message(input.value, now));
+                
+                renderMessages(messages, false);
             }
         }
         
-        
+        // e.shiftKey && 
         
         myBtn.onclick = function(e){
             e.preventDefault();
@@ -47,7 +54,7 @@ var myApp = {
 
 function renderMessage(index, theMessages){
     var theMessage = theMessages[index];                            // Få rätt meddelande
-    var text = document.createTextNode(theMessage.getText());
+    var text = document.createTextNode(theMessage.getHTMLText());
     var li = document.createElement('li');
     var ul = document.getElementById("writeMessages");
     ul.style.listStyleType="none";
@@ -76,8 +83,17 @@ function renderMessage(index, theMessages){
     image.onclick = function(e){
         var message_id = this.parentNode.id;                        // Ta bort rätt arrayelement
         
-        theMessages.splice(message_id, 1); 
-        removeAll(theMessages); 
+        var sure = confirm("Är du säker på att du vill ta bort meddelandet?");
+        
+        if(sure)
+        {
+            theMessages.splice(message_id, 1); 
+            removeAll(theMessages); 
+        }
+        
+        else
+        {
+        }
     };
 }
 
