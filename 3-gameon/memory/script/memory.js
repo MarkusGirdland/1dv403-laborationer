@@ -27,6 +27,12 @@ function generateBoard(cols, rows, numberArray)
     var counter = 0;
     
     var imageArray = [];
+    var count = 0;
+    var tries = 0;
+    var firstGuess = 0;
+    var test;
+    
+    
     
     for(var x = 0; x < numberArray.length; x+=1)        // Skapa bilder
     {
@@ -39,18 +45,70 @@ function generateBoard(cols, rows, numberArray)
         a.href="#";
         
         //TODO: Onclick
+        a.onclick = function(e){
+            var messId = this.parentNode.id;
+            
+            
+            count+=1;
+            
+            if(count === 1)
+            {
+                var convertString = messId.toString();
+                var toString = "pics/" + convertString + ".png";
+                
+                firstGuess = messId;
+                
+                test = img;
+                
+                
+                img.src = toString;
+            }
+            
+            if(count === 2)
+            {
+                var convertString2 = messId.toString();
+                var toString2 = "pics/" + convertString2 + ".png";
+                
+                img.src = toString2;
+                count = 0;
+                
+                if(firstGuess === messId)
+                {
+                    
+                }
+                
+                else
+                {
+                    setTimeout(function() {
+                        
+                        img.src = "pics/0.png";
+                        test.src = "pics/0.png";
+                    }, 1000);   
+                    
+                    tries += 1;
+                }
+                
+            }
+            
+            console.log(messId);
+        };
         
-        var number = numberArray[nr];                       // Sätt in nummer av array
+        img.src = "pics/0.png";
+        a.appendChild(img);
+        
+    /*    var number = numberArray[nr];                       // Sätt in nummer av array
+        
         var convertString = number.toString();              // Gör till string
         var toString = "pics/" + convertString + ".png";    // Formattera rätt
         
         img.src = toString;          // Generera bild
         
-        a.appendChild(img);                                 // Gör a-tagg till bild
+        a.appendChild(img);                                 // Gör a-tagg till bild */
         
         return a;
     }
     
+    var internalCounter = 0;
     
     for(var i = 0; i < cols; i+=1)                      // Skriv ut bilder
     {
@@ -63,11 +121,17 @@ function generateBoard(cols, rows, numberArray)
             var theImage = imageArray[counter];
             counter+=1;
             
+            td.id = numberArray[internalCounter];                   // Få samma ID på samma bild
+            
+            internalCounter+=1;
             
             td.appendChild(theImage);
             div.appendChild(td);
         }
     }
+    
+    
+    
     
 }
 
