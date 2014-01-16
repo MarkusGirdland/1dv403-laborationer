@@ -1,0 +1,19 @@
+body {
+    margin-top: 50px;
+    margin-left: 70px;
+    background-image: url('../../2-labbymezzage/img/background.jpg');
+}
+
+h1 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: White;
+}
+
+p {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: White;
+}
+
+main {
+    margin-left: 200px;
+}

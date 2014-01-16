@@ -30,7 +30,11 @@ function generateBoard(cols, rows, numberArray)
     var count = 0;
     var tries = 0;
     var firstGuess = 0;
-    var test;
+    var secondImage;
+    var lastClick;
+    var winnerWinnerChickenDinner = 0;
+    
+    var neededChickenDinners = ((cols * rows) / 2);
     
     
     
@@ -44,66 +48,80 @@ function generateBoard(cols, rows, numberArray)
         var a = document.createElement('a');
         a.href="#";
         
-        //TODO: Onclick
         a.onclick = function(e){
             var messId = this.parentNode.id;
-            
-            
-            count+=1;
-            
-            if(count === 1)
+        
+            if((lastClick === e.target) === false && count < 2)
             {
-                var convertString = messId.toString();
-                var toString = "pics/" + convertString + ".png";
+                count+=1;
                 
-                firstGuess = messId;
-                
-                test = img;
-                
-                
-                img.src = toString;
-            }
-            
-            if(count === 2)
-            {
-                var convertString2 = messId.toString();
-                var toString2 = "pics/" + convertString2 + ".png";
-                
-                img.src = toString2;
-                count = 0;
-                
-                if(firstGuess === messId)
+                if(count === 1)
                 {
+                    var convertString = messId.toString();
+                    var toString = "pics/" + convertString + ".png";
                     
+                    firstGuess = messId;
+                    
+                    secondImage = img;
+                    
+                    lastClick = e.target;
+                    
+                    
+                    img.onclick = null;
+                    
+                    img.src = toString;
                 }
                 
-                else
+                if(count === 2)
                 {
-                    setTimeout(function() {
-                        
-                        img.src = "pics/0.png";
-                        test.src = "pics/0.png";
-                    }, 1000);   
+                    var convertString2 = messId.toString();
+                    var toString2 = "pics/" + convertString2 + ".png";
                     
+                    img.src = toString2;
+                    
+                    
+                    lastClick = null;
+                    
+                    if(firstGuess === messId)
+                    {
+                        winnerWinnerChickenDinner += 1;
+                        
+                        if(winnerWinnerChickenDinner === neededChickenDinners)
+                        {
+                            var winnerDiv = document.getElementById("winPrompt");
+                            
+                            var p = document.createElement('p');
+                            
+                            var makeString = tries.toString();
+                            
+                            var text = document.createTextNode("Grattis, du vann! Misslyckade gissningar: " + makeString);
+                            
+                            
+                            p.appendChild(text);
+                            winnerDiv.appendChild(p);
+                        }
+                        
+                        count = 0;
+                    }
+                    
+                    else
+                    {
+                        setTimeout(function() {
+                            img.src = "pics/0.png";
+                            secondImage.src = "pics/0.png";
+                            count = 0;
+                        }, 1000);   
+                        
                     tries += 1;
                 }
                 
             }
-            
-            console.log(messId);
+            }
         };
+    
         
         img.src = "pics/0.png";
         a.appendChild(img);
-        
-    /*    var number = numberArray[nr];                       // Sätt in nummer av array
-        
-        var convertString = number.toString();              // Gör till string
-        var toString = "pics/" + convertString + ".png";    // Formattera rätt
-        
-        img.src = toString;          // Generera bild
-        
-        a.appendChild(img);                                 // Gör a-tagg till bild */
         
         return a;
     }
