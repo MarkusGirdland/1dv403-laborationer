@@ -21,30 +21,44 @@ var Validator = {
         
         var focusField = form.elements.firstName;
         
-        
-        
-        
         focusField.focus();
+        
+            // Olika variabler för fälten
+           
+            var lname = form.elements.lastName.value;
+            var code = form.elements.postCode.value;
+            var mail = form.elements.eMail.value;
+            
+        form.elements.firstName.onblur = function () {
+            var fname = form.elements.firstName.value;
+            div = document.getElementById("error1");
+            
+            if(fname.match(regExpNames))
+            {
+                text = document.createTextNode("Fältet får inte lämnas tomt!");
+                div.appendChild(text);
+                div.style.color="red";
+            }
+            
+            else
+            {
+                text = document.createTextNode("Ok!");
+                div.appendChild(text);
+                div.style.color="green";
+                
+            }
+        };
+        
+        
         
         button.onclick = function(e) {                          // Klick
             button.disabled = true;
             button.value = "Skickar...";
             
             
-            // Olika variabler för fälten
-            var fname = form.elements.firstName.value;
-            var lname = form.elements.lastName.value;
-            var code = form.elements.postCode.value;
-            var mail = form.elements.eMail.value;
+
             
             
-            if(fname.match(regExpNames))
-            {
-                div = document.getElementById("error1");
-                text = document.createTextNode("Fältet får inte lämnas tomt!");
-                div.appendChild(text);
-                div.style.color="red";
-            }
             
             if(lname.match(regExpNames))
             {
