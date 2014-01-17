@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8" />
+ 	<title>JavaScript - Laboration 4 - Form</title>
+ 	<link rel="Stylesheet" href="basic.css" />
+
+</head>
+    <body>
+        <header>
+            <h1>
+                Fyll i din betalningsplan
+            </h1>
+        </header>
+        
+        <main>
+            
+            <form action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php" method="POST" id="userform" target="_blank"> 
+            
+                <p id="formQuestion1">Förnamn</p>
+                <div id="error1"></div>
+                <input type="text" name="firstName"/>
+                
+                <p class="formQuestion">Efternamn</p>
+                <div id="error2"></div>
+                <input type="text" name="lastName" />
+                
+                <p class="formQuestion">Postnummer</p>
+                <div id="error3"></div>
+                <input type="text" name="postCode" />
+                
+                <p class="formQuestion">E-post</p>
+                <div id="error4"></div>
+                <input type="text" name="eMail" />
+                
+                <br />
+                <br />
+                    
+                <label id="label" class="formQuestion" for="priceModel">Prismodell</label>
+                <br />
+                            <select name="Type" id="priceModel">
+                                <option value="Låg" selected>Låg</option>
+                                <option value="Medel">Medel</option>
+                                <option value="Hög">Hög</option>
+                            </select>
+                    
+                    
+                    <br />
+                    <br />
+                    <br />
+                    <input id="sendButton" type="submit" value="Genomför Köp" />
+                    
+                </form>
+        </main>
+        <script src="validator.js"></script>
+    </body>
+</html>

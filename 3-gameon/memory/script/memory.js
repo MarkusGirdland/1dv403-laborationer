@@ -12,9 +12,9 @@ var Memory = {
         
         
         var randomArray = [];
-        randomArray = window.RandomGenerator.getPictureArray(rows,cols);
+        randomArray = window.RandomGenerator.getPictureArray(rows,cols);        // Skaffa nummer från random.js
         
-        generateBoard(rows, cols, randomArray);
+        generateBoard(rows, cols, randomArray);                                 // Gör spelet
     }
 };
 
@@ -34,7 +34,7 @@ function generateBoard(cols, rows, numberArray)
     var lastClick;
     var winnerWinnerChickenDinner = 0;
     
-    var neededChickenDinners = ((cols * rows) / 2);
+    var neededChickenDinners = ((cols * rows) / 2);         // Hur många par behövs
     
     
     
@@ -48,23 +48,23 @@ function generateBoard(cols, rows, numberArray)
         var a = document.createElement('a');
         a.href="#";
         
-        a.onclick = function(e){
+        a.onclick = function(e){                            // Onclick funktionen
             var messId = this.parentNode.id;
         
-            if((lastClick === e.target) === false && count < 2)
+            if((lastClick === e.target) === false && count < 2)   // Om förra klicket inte är samma som detta & count är under 2
             {
                 count+=1;
                 
                 if(count === 1)
                 {
                     var convertString = messId.toString();
-                    var toString = "pics/" + convertString + ".png";
+                    var toString = "pics/" + convertString + ".png";            // Rätt bild
                     
-                    firstGuess = messId;
+                    firstGuess = messId;                                        // Spara första gissningen
                     
                     secondImage = img;
                     
-                    lastClick = e.target;
+                    lastClick = e.target;                                       // Spara förra klicket
                     
                     
                     img.onclick = null;
@@ -72,7 +72,7 @@ function generateBoard(cols, rows, numberArray)
                     img.src = toString;
                 }
                 
-                if(count === 2)
+                if(count === 2)                                                 // Andra gissningen
                 {
                     var convertString2 = messId.toString();
                     var toString2 = "pics/" + convertString2 + ".png";
@@ -82,11 +82,11 @@ function generateBoard(cols, rows, numberArray)
                     
                     lastClick = null;
                     
-                    if(firstGuess === messId)
+                    if(firstGuess === messId)                               // Om det är rätt
                     {
                         winnerWinnerChickenDinner += 1;
                         
-                        if(winnerWinnerChickenDinner === neededChickenDinners)
+                        if(winnerWinnerChickenDinner === neededChickenDinners)      // Om spelet är slut
                         {
                             var winnerDiv = document.getElementById("winPrompt");
                             
@@ -106,7 +106,7 @@ function generateBoard(cols, rows, numberArray)
                     
                     else
                     {
-                        setTimeout(function() {
+                        setTimeout(function() {                                     // Vänd tillbaka efter 1 sekund, sätt tillbaka bilder
                             img.src = "pics/0.png";
                             secondImage.src = "pics/0.png";
                             count = 0;
