@@ -7,7 +7,6 @@ var Validator = {
         // Formvariabler
         var form = document.getElementById("userform");
         var button = document.getElementById("sendButton");
-        var question = document.getElementById("formQuestion");
         
         // Reguljära uttryck
         
@@ -21,8 +20,7 @@ var Validator = {
         
             // Olika variabler för fälten
            
-            
-            var mail = form.elements.eMail.value;
+            var filled = [false, false, false, false];
             
             var newDiv = [document.createElement("div"), document.createElement("div"), document.createElement("div"), document.createElement("div")];  // Fyra divs
             
@@ -54,7 +52,7 @@ var Validator = {
             
             else
             {  
-                div[0].value = "";
+                filled[0] = true;
                 div[0].style.display = "none";
             }
         };
@@ -70,7 +68,8 @@ var Validator = {
             
             else
             {
-               div[1].style.display = "none";
+                filled[1] = true;
+                div[1].style.display = "none";
             }
         };
         
@@ -93,6 +92,7 @@ var Validator = {
                 newPostCode = newPostCode.replace("e", "");
                 div[2].style.display = "none";
                 textArea.value = newPostCode;
+                filled[2] = true;
             }
         };
         
@@ -108,18 +108,126 @@ var Validator = {
             else
             {
                 div[3].style.display = "none";
+                filled[3] = true;
             }
         };
         
+        var divContainer;
+
+        
+        form.onsubmit = function(e) {
+                if(filled[0] && filled[1] && filled[2] && filled[3])
+                {
+                    divContainer = popupBackground();
+                    var testBool = false;
+                    //button.disabled = popup(divContainer);
+                
+                    testBool = popup(divContainer);
+                
+                    if(testBool)
+                    {
+                        console.log("returning true");
+                        return true;
+                    }
+                    
+                    else
+                    {
+                        console.log("retunring false");
+                        return false;
+                    }
+
+                }
+                
+                else
+                {
+                    console.log("false");
+                    return false;
+                }
+            };
         
         
-        button.onclick = function(e) {                          // Klick
-            
-            button.value = "Skickar...";
-            
-        };
         
     }
 };
+
+function popup(backgroundDiv) {
+    var popForm = document.getElementById("userform");
+    var myDiv = document.createElement("div");
+    myDiv.className = "popupWindow";
+    var priceModel = document.getElementById("priceModel");
+    
+    // Knappar
+    
+    var newButton = document.createElement("button");
+    var newerButton = document.createElement("button");
+    
+    newButton.innerHTML = "Skicka";
+    newerButton.innerHTML = "Stäng";
+    
+    newButton.className = "popupButton";
+    newerButton.className = "popupButton";
+    
+    newButton.setAttribute("id", "Skicka");
+    newerButton.setAttribute("id", "Avbryt");
+    
+    myDiv.appendChild(newButton);
+    myDiv.appendChild(newerButton);
+    
+    // Information
+    
+    var h1 = document.createElement("h1");
+    h1.setAttribute("id", "popuph1");
+    var h1Text = document.createTextNode("Vänligen kontrollera dina uppgifter");
+    
+    var text = document.getElementById("formQuestion1");
+    
+    var writeFname = text.value + popForm.elements.firstName.value;
+    var writeLname = document.getElementById("formQuestion2").value + popForm.elements.lastName.value;
+    var writeCode = document.getElementById("formQuestion3").value + popForm.elements.postCode.value;
+    var writeMail = document.getElementById("formQuestion4").value + popForm.elements.eMail.value;
+    var writePlan = document.getElementById("model").value + priceModel.value;
+    
+    var p1 = document.createTextNode(writeFname);
+    var p2 = document.createTextNode(writeLname);
+    var p3 = document.createTextNode(writeCode);
+    var p4 = document.createTextNode(writeMail);
+    var p5 = document.createTextNode(writePlan);
+    
+    h1.appendChild(h1Text);
+    
+    myDiv.appendChild(h1);
+    myDiv.appendChild(p1);
+    myDiv.appendChild(document.createElement('br'));
+    myDiv.appendChild(p2);
+    myDiv.appendChild(document.createElement('br'));
+    myDiv.appendChild(p3);
+    myDiv.appendChild(document.createElement('br'));
+    myDiv.appendChild(p4);
+    myDiv.appendChild(document.createElement('br'));
+    myDiv.appendChild(p5);
+    
+    
+    document.body.appendChild(myDiv);
+    
+    newButton.onclick = function () {
+        document.body.removeChild(myDiv);
+        document.body.removeChild(backgroundDiv);
+        return true; 
+    };
+    
+    newerButton.onclick = function () {
+        document.body.removeChild(myDiv);
+        document.body.removeChild(backgroundDiv);
+        return false;
+    };
+}
+
+function popupBackground() {
+    var backgroundDiv = document.createElement("div");
+    backgroundDiv.className = "popupBackground";
+    document.body.appendChild(backgroundDiv);
+    return backgroundDiv;
+}
+
 
 window.onload = Validator.init;
