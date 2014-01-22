@@ -14,6 +14,10 @@ input {
     margin: 0 0 10px 0;
 }
 
+#newDiv {
+    color: red;
+}
+
 body {
     text-align: center;
     margin-top: 100px;
