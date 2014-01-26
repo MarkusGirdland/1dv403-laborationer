@@ -114,43 +114,29 @@ var Validator = {
         
         var divContainer;
 
-        
-        form.onsubmit = function(e) {
-                if(filled[0] && filled[1] && filled[2] && filled[3])
+        button.onclick = function(e) {
+            
+            button.disabled = true;
+            
+              if(filled[0] && filled[1] && filled[2] && filled[3])
                 {
                     divContainer = popupBackground();
-                    var testBool = false;
-                    //button.disabled = popup(divContainer);
-                
-                    testBool = popup(divContainer);
-                
-                    if(testBool)
-                    {
-                        console.log("returning true");
-                        return true;
-                    }
                     
-                    else
-                    {
-                        console.log("returning false");
-                        return false;
-                    }
-
+                    popup(divContainer, form, button);
                 }
                 
                 else
                 {
-                    console.log("else - false");
+                    button.disabled = false;
                     return false;
                 }
-            };
-        
+        };
         
         
     }
 };
 
-function popup(backgroundDiv) {
+function popup(backgroundDiv, theForm, theButton) {
     var popForm = document.getElementById("userform");
     var myDiv = document.createElement("div");
     myDiv.className = "popupWindow";
@@ -225,15 +211,15 @@ function popup(backgroundDiv) {
     document.body.appendChild(myDiv);
     
     newButton.onclick = function () {
-        document.body.removeChild(myDiv);
-        document.body.removeChild(backgroundDiv);
-        return true; 
+        theButton.disabled = false;
+        
+        theForm.submit();
     };
     
     newerButton.onclick = function () {
         document.body.removeChild(myDiv);
         document.body.removeChild(backgroundDiv);
-        return false;
+        theButton.disabled = false;
     };
 }
 
