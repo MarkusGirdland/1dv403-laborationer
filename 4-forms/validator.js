@@ -132,7 +132,7 @@ var Validator = {
                     
                     else
                     {
-                        console.log("retunring false");
+                        console.log("returning false");
                         return false;
                     }
 
@@ -140,7 +140,7 @@ var Validator = {
                 
                 else
                 {
-                    console.log("false");
+                    console.log("else - false");
                     return false;
                 }
             };
@@ -161,6 +161,8 @@ function popup(backgroundDiv) {
     var newButton = document.createElement("button");
     var newerButton = document.createElement("button");
     
+    newButton.setAttribute("value", "Skicka");
+    
     newButton.innerHTML = "Skicka";
     newerButton.innerHTML = "Stäng";
     
@@ -179,13 +181,23 @@ function popup(backgroundDiv) {
     h1.setAttribute("id", "popuph1");
     var h1Text = document.createTextNode("Vänligen kontrollera dina uppgifter");
     
-    var text = document.getElementById("formQuestion1");
+    // Hämta de olika frågorna
     
-    var writeFname = text.value + popForm.elements.firstName.value;
-    var writeLname = document.getElementById("formQuestion2").value + popForm.elements.lastName.value;
-    var writeCode = document.getElementById("formQuestion3").value + popForm.elements.postCode.value;
-    var writeMail = document.getElementById("formQuestion4").value + popForm.elements.eMail.value;
-    var writePlan = document.getElementById("model").value + priceModel.value;
+    var fq1 = document.getElementById("formQuestion1");
+    var fq2 = document.getElementById("formQuestion2");
+    var fq3 = document.getElementById("formQuestion3");
+    var fq4 = document.getElementById("formQuestion4");
+    var fq5 = document.getElementsByTagName('label')[0].firstChild.data;
+    
+    // Lägg in texten av frågan + värdet av den i en variabel
+    
+    var writeFname = fq1.firstChild.nodeValue + ": " + popForm.elements.firstName.value;
+    var writeLname = fq2.firstChild.nodeValue + ": " + popForm.elements.lastName.value;
+    var writeCode = fq3.firstChild.nodeValue + ": " + popForm.elements.postCode.value;
+    var writeMail = fq4.firstChild.nodeValue + ": " + popForm.elements.eMail.value;
+    var writePlan = fq5 + ": " + priceModel.value; 
+    
+    // Skapa textnoder med variablerna
     
     var p1 = document.createTextNode(writeFname);
     var p2 = document.createTextNode(writeLname);
@@ -194,6 +206,8 @@ function popup(backgroundDiv) {
     var p5 = document.createTextNode(writePlan);
     
     h1.appendChild(h1Text);
+    
+    // Lägg in textnoderna i diven
     
     myDiv.appendChild(h1);
     myDiv.appendChild(p1);
@@ -206,6 +220,7 @@ function popup(backgroundDiv) {
     myDiv.appendChild(document.createElement('br'));
     myDiv.appendChild(p5);
     
+    // Lägg in diven i modalfönstret
     
     document.body.appendChild(myDiv);
     

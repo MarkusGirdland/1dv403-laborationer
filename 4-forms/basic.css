@@ -60,6 +60,11 @@ h1 {
     color: White;
 }
 
+#model {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: White;
+}
+
 #label {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: White;
