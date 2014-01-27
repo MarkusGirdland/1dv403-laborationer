@@ -149,8 +149,12 @@ function popup(backgroundDiv, theForm, theButton) {
     
     newButton.setAttribute("value", "Skicka");
     
-    newButton.innerHTML = "Skicka";
-    newerButton.innerHTML = "Stäng";
+    var buttonText = document.createTextNode("Skicka");
+    var buttonText2 = document.createTextNode("Stäng");
+    
+    newButton.appendChild(buttonText);
+    newerButton.appendChild(buttonText2);
+    
     
     newButton.className = "popupButton";
     newerButton.className = "popupButton";

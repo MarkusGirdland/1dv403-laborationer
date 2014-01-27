@@ -14,8 +14,7 @@ window.onload = function(){
 		
 		if(number < 100 && number > 0)
 		{
-		    numberOfGuesses += 1;
-		    
+		numberOfGuesses += 1;
             if(number > secret)
             {
                 return [false, "Det hemliga talet är lägre!"];
@@ -58,7 +57,7 @@ window.onload = function(){
 	submit.addEventListener("click", function(e){
 		e.preventDefault(); // Hindra formuläret från att skickas till servern. Vi hanterar allt på klienten.
 
-		var answer = guess(input.value) // Läser in talet från textrutan och skickar till funktionen "guess"
+		var answer = guess(input.value); // Läser in talet från textrutan och skickar till funktionen "guess"
 		p.innerHTML = answer[1];		// Skriver ut texten från arrayen som skapats i funktionen.	
 
 		if(answer[0] === true){				// Om spelet är slut, avaktivera knappen.
