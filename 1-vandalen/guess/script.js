@@ -12,7 +12,7 @@ window.onload = function(){
 			
 		// Plats för förändring.
 		
-		if(number < 100 && number > 0)
+		if(number < 101 && number >= 0)
 		{
 		numberOfGuesses += 1;
             if(number > secret)
@@ -33,7 +33,7 @@ window.onload = function(){
 
         else 
         {
-            return [false, "Talet är utanför intervallet 0 - 100"];
+            return [false, "Talet är utanför intervallet 1 - 100"];
         }
 
 		// Returnera exempelvis: 
