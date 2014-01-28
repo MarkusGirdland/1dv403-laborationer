@@ -66,7 +66,8 @@ function renderMessage(index, theMessages){
     button.href="#";
     
     li.id = index;                                                  // Spara id
-    li.appendChild(text);                                           // Lägg in text & tid 
+    //li.appendChild(text);                                           // Lägg in text & tid 
+    li.innerHTML = theMessage.getHTMLText();
     li.appendChild(button);
     
     var image = document.createElement('img');                      // Lägg in bilder
@@ -89,8 +90,8 @@ function renderMessage(index, theMessages){
     ul.appendChild(li);
 
     a.onclick = function(e){
-        var message_id = this.parentNode.id;                        // Ta bort rätt arrayelement
-        
+        var message_id = this.parentNode.id;   // Ta bort rätt arrayelement
+
         var sure = confirm("Är du säker på att du vill ta bort meddelandet?");
         
         if(sure)

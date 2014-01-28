@@ -18,8 +18,7 @@ Message.prototype.toString = function () {
 
 Message.prototype.getHTMLText = function () {
     var theText = this.getText();
-    
-    theText = theText.replace("<br>", ". ");  
-    theText = theText.replace("\n", ". ");
+  
+    theText = theText.replace("\n", "<br>");
     return theText;
 };

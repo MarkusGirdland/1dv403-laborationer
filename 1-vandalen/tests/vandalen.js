@@ -8,7 +8,7 @@ test( "Datatyper", function() {
   ok( makePerson(indata).hasOwnProperty('maxAge') , "Svarsobjektet innehåller egenskapen 'maxAge'" );
   ok( makePerson(indata).hasOwnProperty('averageAge') , "Svarsobjektet innehåller egenskapen 'averageAge'" );
 
-});
+}); 
 
 test( "Namnhantering (names)", function() {
 

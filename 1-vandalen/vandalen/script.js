@@ -44,7 +44,8 @@ var makePerson = function(persArr){
         {
             data[b].name = tempArray[b];
         } 
-        
+         
+        console.log(tempArray);
         
      
         var tempNames ="";
@@ -69,6 +70,7 @@ var makePerson = function(persArr){
     };
 
     var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
+     var data = [{name: "Ä", age: 37}, {name: "Ö", age: 36}, {name: "Å", age: 46}];
     
     var result = makePerson(data);
     

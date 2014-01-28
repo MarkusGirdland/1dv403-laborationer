@@ -118,7 +118,7 @@ var Validator = {
             
             button.disabled = true;
             
-              if(filled[0] && filled[1] && filled[2] && filled[3])
+              if(filled[0] && filled[1] && filled[2] && filled[3])      // Om allt är ifyllt
                 {
                     divContainer = popupBackground();
                     
@@ -137,9 +137,9 @@ var Validator = {
 };
 
 function popup(backgroundDiv, theForm, theButton) {
-    var popForm = document.getElementById("userform");
+    var popForm = document.getElementById("userform"); 
     var myDiv = document.createElement("div");
-    myDiv.className = "popupWindow";
+    myDiv.className = "popupWindow";                                // Skapa div för popup
     var priceModel = document.getElementById("priceModel");
     
     // Knappar
@@ -147,19 +147,16 @@ function popup(backgroundDiv, theForm, theButton) {
     var newButton = document.createElement("button");
     var newerButton = document.createElement("button");
     
-    newButton.setAttribute("value", "Skicka");
-    
-    var buttonText = document.createTextNode("Skicka");
+    var buttonText = document.createTextNode("Skicka");             // Skapa två knappar, sätt texten
     var buttonText2 = document.createTextNode("Stäng");
     
     newButton.appendChild(buttonText);
     newerButton.appendChild(buttonText2);
     
-    
-    newButton.className = "popupButton";
+    newButton.className = "popupButton";                            // Styla i CSS
     newerButton.className = "popupButton";
     
-    newButton.setAttribute("id", "Skicka");
+    newButton.setAttribute("id", "Skicka"); 
     newerButton.setAttribute("id", "Avbryt");
     
     myDiv.appendChild(newButton);
@@ -222,13 +219,13 @@ function popup(backgroundDiv, theForm, theButton) {
     
     newerButton.onclick = function () {
         document.body.removeChild(myDiv);
-        document.body.removeChild(backgroundDiv);
+        document.body.removeChild(backgroundDiv);           // Om inte skicka - ta bort popup & bakgrund
         theButton.disabled = false;
     };
 }
 
 function popupBackground() {
-    var backgroundDiv = document.createElement("div");
+    var backgroundDiv = document.createElement("div");          // Grå bakgrund under tiden modalfönstret är öppet
     backgroundDiv.className = "popupBackground";
     document.body.appendChild(backgroundDiv);
     return backgroundDiv;
