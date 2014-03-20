@@ -34,6 +34,7 @@ input {
     top: 50%;
     left: 43%;
     background-color: Menu;
+    overflow: auto;
     border: #f9f9f9;
     height: 200px;
     width: 300px; 

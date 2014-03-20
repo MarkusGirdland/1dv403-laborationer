@@ -113,9 +113,8 @@ function generateBoard(cols, rows, numberArray)
                         }, 1000);   
                         
                     tries += 1;
+                    }
                 }
-                
-            }
             }
         };
     
