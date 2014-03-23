@@ -1,16 +1,16 @@
 "using strict";
 
-var clickable = true;
-
 var myApp = {
-    
+ 
     init: function () {
         var myButton = document.getElementById("kaffePic"); 
         
+        
         myButton.onclick = function(e) {
+            
             e.preventDefault();
             
-            if(clickable)
+            if(clickable === true)      // Om man får klicka
             {
                 clickable = false;
                 popup(myButton);
@@ -25,7 +25,9 @@ var myApp = {
     }
 };
 
-function popup(theButton) {
+var clickable = true;
+
+function popup(theButton) {                                         // Popup
     var myDiv = document.createElement("div");
     myDiv.className = "popupWindow";                                // Skapa div för popup
   
@@ -69,7 +71,7 @@ function popup(theButton) {
         
         var pics = JSON.parse(jsonStr);
         
-        var picInABox = document.createElement('div');
+        
         
         
         for(var i in pics)                  // Ta ut max höjd och bredd
@@ -83,24 +85,37 @@ function popup(theButton) {
             {
                 maxWidth = pics[i].width;
             }
-            console.log(maxHeight);
-            console.log(maxWidth);
         }
-        
-        picInABox.width = maxWidth;
-        picInABox.height = maxHeight;
-        
-        
-        
         
         for(var y in pics)
         {
+            var picInABox = document.createElement('div');      // Lägger in varje bild med max höjd och bredd som mått på div
+            picInABox.className = "picInABox";
+            
+            picInABox.style.width = maxWidth+'px';
+            picInABox.style.height = maxHeight+'px';
+        
+            
             var thumbPic = document.createElement('img');
             thumbPic.src = pics[y].URL;
+            thumbPic.className = "thumbPic";
+            
+            // Onclick på bild
+            
+            thumbPic.onclick = function(e) {                    // Onclick för att ändra bakgrund
+                var backgroundURL = this.src;
+                document.body.style.backgroundImage="url('" + backgroundURL + "')"; 
+            };
+            
+            
             picInABox.appendChild(thumbPic);
+            
             
             thumbnailDiv.appendChild(picInABox);
         }
+        
+        footDiv.removeChild(loadingGif);
+        footDiv.removeChild(text);
     };
     
     new AjaxCon("http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", myCallback);
@@ -113,7 +128,7 @@ function popup(theButton) {
     footDiv.className = "footDiv";
     var text = document.createElement('p');
     text.setAttribute("id", "popupP");
-    var textText = document.createTextNode("Statusrad");
+    var textText = document.createTextNode("Laddar in bilder...");
     
     text.appendChild(textText);
     
@@ -134,6 +149,7 @@ function popup(theButton) {
     
     newButton.onclick = function () {
         document.body.removeChild(myDiv);
+        
         clickable = true;
     };
     

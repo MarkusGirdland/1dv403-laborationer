@@ -1,8 +1,6 @@
 "use strict";
 
 var myApp = {
-
-        
     
     init: function () {
         

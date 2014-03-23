@@ -14,15 +14,16 @@ body {
 }
 
 .popupWindow {
-    position: absolute;
-    top: 20%;
-    left: 35%;
+    position: fixed;
+    top: 5%;
+    left: 15%;
     overflow: auto;
     border: 3px #f9f9f9;
-    height: 1000px;
-    width: 1600px; 
+    height: 800px;
+    width: 1300px; 
     -moz-border-radius: 15px;
     border-radius: 15px;
+    border-top: 50px;
     
     background-color: #3D3D3D;
 }
@@ -30,29 +31,34 @@ body {
 .popupImage {
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 5%;
+    right: 18%;
     margin-right: 10px;
 }
 
 .popupCoffee {
     width: 25px;
     height: 25px;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 5%;
+    left: 15%;
     margin-left: 10px;
     margin-top: 3px;
+    background-color: #3D3D3D;
 }
 
 #popuph1 {
     font-size: 12px;
-    color: red;
-    position: absolute;
-    top: 0;
-    left: 0;
+    color: white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    position: fixed;
+    top: 4.2%;
+    left: 15%;
     margin-left: 37px;
+    background-color: #3D3D3D;
+    width: 1200px;
+    height: 30px;
 }
 
 #loadbar {
@@ -60,15 +66,43 @@ body {
 }
 
 .footDiv {
-    position: relative;
+    float: left;
+    margin-left: 10px;
+    position: absolute;
     bottom: 0;
+    color: white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.thumbDiv {
-    position: absolute;
-    height: 400px;
-    width: 1550px;
-    margin-top: 40px;
-    margin-left: 25px;
-    background-color: #FFD073;
+.topDiv {
+    position: fixed;
+    top: 8%;
+    left: 20%;
+}
+
+.picInABox {
+    margin: 50px;
+    float: left;
+
+    border: 10px solid black;
+    display:-moz-box; 
+    -moz-box-pack:center; 
+    -moz-box-align:center; 
+    
+    display:-webkit-box; 
+    -webkit-box-pack:center; 
+    -webkit-box-align:center; 
+    
+    display:box; 
+    box-pack:center; 
+    box-align:center;
+    
+    background-color: white;
+    padding: 10px;
+}
+
+.thumbPic {
+    overflow: auto;
+    vertical-align: middle;
+    
 }

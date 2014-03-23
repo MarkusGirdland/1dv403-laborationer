@@ -4,8 +4,6 @@ function AjaxCon(url, callback){
 
     var xhr = this.getXHR();
     
-    console.log("Den körs iaf");
-    
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4){
             if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)
